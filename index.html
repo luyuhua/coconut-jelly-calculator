@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lucky</title>
+    <style>
+        div {
+            margin: 50px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>输入牛奶和淡奶油混合液重量：<input style="width: 90px" value="0" id="i1" type="number">g</div>
+    <div>输入兑好椰奶混合液重量：<input style="width: 90px" value="0" id="i3" type="number">g</div>
+    <div>预计做多少个椰子冻的量：<input value="10" style="width: 100px" id="i2" type="number">个</div>
+    <div><button onClick="calculate()">辅料椰子冻</button></div>
+    <div><button onClick="calculateK()">带壳椰子冻</button></div>
+
+    <div id="result"></div>
+
+
+    <label for="pet-select">椰奶万能配方:</label>
+    <div>中杯= 牛奶113g，淡奶油28g,椰子水最后加到对应刻度线</div>
+    <div>大杯= 牛奶153g，淡奶油38g,椰子水最后加到对应刻度线</div>
+    <label for="pet-select">酸奶万能配方:</label>
+    <div>中杯= 牛奶121g，淡奶油30g,椰浆45g,蒙马酸奶最后加到对应刻度线</div>
+    <div>大杯= 牛奶165g，淡奶油41g,椰浆62g,蒙马酸奶最后加到对应刻度线</div>
+ 
+    <div>预计调椰奶的量：<input value="2000" style="width: 100px" id="i4" type="number">g</div>
+    <div><button onClick="calculateY()">点我计算椰奶</button></div>
+
+    <div id="result1"></div>
+    <script>
+        const i1 = document.querySelector('#i1');
+        const i2 = document.querySelector('#i2');
+        const i3 = document.querySelector('#i3');
+        const i4 = document.querySelector('#i4');
+        const result = document.querySelector('#result');
+        const result1 = document.querySelector('#result1');
+        const base = { milk: 105, cream: 25, sugar: 8.2, water: 125, jld: 1 }
+        const base1 = { milk: 0.320, cream: 0.08,water: 0.6 }
+        const base2 = { milk: 115, cream: 50, sugar: 10, water: 90, jld: 1 }
+        calculate = () => {
+            let milk = i1.value * 0.8+i3.value * 0.32
+            let water = i3.value * 0.6
+            let cream = i1.value * 0.2+i3.value * 0.08, n = i2.value;
+            console.log(n, n * base.milk - milk, n * base.cream - cream)
+            let str = `需再加入：牛奶=${n * base.milk - milk}克(g) 雀巢淡奶油=${n * base.cream - cream}克(g) 椰子水=${n * base.water-water}克(g) 糖=${n * base.sugar}克(g) 吉利丁片=${n * base.jld}片`
+            result.innerHTML = str
+        }
+        calculateK = () => {
+            let milk = i1.value * 0.8+i3.value * 0.32
+            let water = i3.value * 0.6
+            let cream = i1.value * 0.2+i3.value * 0.08, n = i2.value;
+            let str = `需再加入：牛奶=${n * base2.milk - milk}克(g) 发喜淡奶油=${n * base2.cream - cream}克(g) 椰子水=${n * base2.water-water}克(g) 糖=${n * base2.sugar}克(g) 吉利丁片=${n * base2.jld}片`
+            result.innerHTML = str
+        }
+        calculateY = () => {
+            let y = i4.value
+            let str = `需加入：牛奶=${y * base1.milk}克(g) 雀巢淡奶油=${y * base1.cream}克(g) 椰子水=${y * base1.water}克(g)`
+            result1.innerHTML = str
+        }
+    </script>
+</body>
+
+</html>
